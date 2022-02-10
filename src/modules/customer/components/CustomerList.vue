@@ -1,17 +1,17 @@
 <template>
     <h1>Este es el customer list</h1>
     <ol>
-        <li>Customer Juan</li>
-        <li>Customer Luis</li>
-        <li>Customer Mario</li>
-        <li>Customer Enrique</li>
-        <li>Customer Martin</li>
-        <li>Customer Ernesto</li>
+        <li v-for="customer in customers" :key="customer.id">{{ customer.nombre }}</li>
     </ol>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex';
+export default {
+    computed: {
+        ...mapGetters('CustomerStore', ['customers'])
+    }
+};
 </script>
 
 <style></style>
