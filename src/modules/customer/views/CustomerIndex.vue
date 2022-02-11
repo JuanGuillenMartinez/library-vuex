@@ -1,5 +1,12 @@
 <template>
-    <customer-list />
+    <div class="container-customers">
+        <div class="container-list">
+            <customer-list />
+        </div>
+        <div class="container-router-view">
+            <router-view />
+        </div>
+    </div>
 </template>
 
 <script>
@@ -13,4 +20,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.container-customers {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+}
+</style>
