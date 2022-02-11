@@ -1,11 +1,15 @@
 <template>
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div> -->
-  <router-view/>
+    <NavbarProject />
+    <router-view />
 </template>
-
-<style>
-
-</style>
+<script>
+import { defineAsyncComponent } from "@vue/runtime-core";
+export default {
+    components: {
+        NavbarProject: defineAsyncComponent(() =>
+            import("@/components/NavbarProject.vue")
+        ),
+    },
+};
+</script>
+<style></style>
