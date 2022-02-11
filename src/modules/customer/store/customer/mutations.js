@@ -3,3 +3,7 @@
 // export const myMutation = ( state ) => {
 //      
 // }
+
+export const updateCustomerList = ( state, data ) => {
+    state.customerList = data
+}

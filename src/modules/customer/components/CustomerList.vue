@@ -1,15 +1,22 @@
 <template>
     <h1>Este es el customer list</h1>
     <ol>
-        <li v-for="customer in customers" :key="customer.id">{{ customer.nombre }}</li>
+        <li v-for="customer in customers" :key="customer.id">{{ customer.name }}</li>
     </ol>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
     computed: {
         ...mapGetters('CustomerStore', ['customers'])
+    },
+    methods: {
+        ...mapActions('CustomerStore', [ 'fetchCustomerList' ]),
+    },
+    created() {
+        this.fetchCustomerList()
     }
 };
 </script>

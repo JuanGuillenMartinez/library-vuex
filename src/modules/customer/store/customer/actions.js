@@ -3,3 +3,10 @@
 // export const myAction = async ( { commit } ) => {
 
 // }
+
+import request from '@/api/AxiosInstance'
+
+export const fetchCustomerList = async ( { commit } ) => {
+    const { data: { data } } = await request.get('/customers')
+    commit('updateCustomerList', data)
+}
