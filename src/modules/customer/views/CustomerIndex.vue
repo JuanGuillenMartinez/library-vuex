@@ -24,5 +24,6 @@ export default {
 .container-customers {
     display: grid;
     grid-template-columns: 3fr 7fr;
+    padding: 12px;
 }
 </style>

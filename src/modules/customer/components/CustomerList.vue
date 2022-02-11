@@ -1,7 +1,9 @@
 <template>
-    <SearchBar />
     <div v-for="customer in customers" :key="customer.id" class="card">
         <div class="card-body">{{ customer.name }}</div>
+    </div>
+    <div class="container-searchbar">
+    <SearchBar />
     </div>
 </template>
 
@@ -25,4 +27,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.container-searchbar {
+    margin-top: 12px;
+}
+</style>
