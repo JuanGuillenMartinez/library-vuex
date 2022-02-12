@@ -2,7 +2,7 @@
     <form>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label"
-                >Email address</label
+                >Correo electrónico</label
             >
             <input
                 type="email"
@@ -10,13 +10,10 @@
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
             />
-            <div id="emailHelp" class="form-text">
-                We'll never share your email with anyone else.
-            </div>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label"
-                >Password</label
+                >Contraseña</label
             >
             <input
                 type="password"
@@ -24,17 +21,14 @@
                 id="exampleInputPassword1"
             />
         </div>
-        <div class="mb-3 form-check">
-            <input
-                type="checkbox"
-                class="form-check-input"
-                id="exampleCheck1"
-            />
-            <label class="form-check-label" for="exampleCheck1"
-                >Check me out</label
-            >
+        <div class="container-login-actions">
+            <button type="submit" class="btn btn-primary">
+                Iniciar sesión
+            </button>
+            <div class="container-register-text">
+                <span>No se encuentra registrado? Registrese.</span>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </template>
 
@@ -42,4 +36,18 @@
 export default {};
 </script>
 
-<style></style>
+<style scoped>
+.container-login-actions {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+}
+.container-register-text {
+    position: relative;
+}
+span {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+}
+</style>
