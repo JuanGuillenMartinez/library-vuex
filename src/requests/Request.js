@@ -14,3 +14,16 @@ export const get = async (url, data) => {
     }
     return await axios.getInstance().get(url)
 };
+
+export const deleteRequest = async (url, data) => {
+    if (data) {
+        return await axios.getInstance().delete(`${url}/${data}`);
+    }
+    return await axios.getInstance().delete(url)
+};
+
+export const update = async (url, data) => {
+    if (data) {
+        return await axios.getInstance().put(url, data);
+    }
+};
