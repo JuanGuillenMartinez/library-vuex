@@ -3,3 +3,7 @@
 // export const myGetter = ( state ) => {
 //     return state.attribute 
 // }
+
+export const isAuth = ( state ) => {
+    return state.userIsLoggedIn 
+}

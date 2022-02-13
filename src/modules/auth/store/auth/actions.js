@@ -20,3 +20,13 @@ export const fetchUserCredentials = async ( { commit }, credentials ) => {
         console.log( error )
     }
 }
+
+export const fetchLogoutUser = async ( { commit } ) => {
+    try {
+        // const response = axios.get()
+        commit('changeUserAuth', false)
+    } catch ( error ) {
+        alert('Ha occurido un error')
+        console.log( error )
+    }
+}

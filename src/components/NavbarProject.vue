@@ -31,7 +31,11 @@
                     <SearchBar />
                 </form>
                 <div>
-                    <button type="button" class="btn btn-danger btn-logout">
+                    <button
+                        @click="logout"
+                        type="button"
+                        class="btn btn-danger btn-logout"
+                    >
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
                 </div>
@@ -42,9 +46,26 @@
 
 <script>
 import { defineAsyncComponent } from "vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
     components: {
         SearchBar: defineAsyncComponent(() => import("@/components/SearchBar")),
+    },
+    computed: {
+        ...mapGetters("AuthStore", ["isAuth"]),
+    },
+    methods: {
+        ...mapActions("AuthStore", ["fetchLogoutUser"]),
+        async logout() {
+            const response = await this.fetchLogoutUser()
+            console.log(response)
+            this.userIsLoggedOut()
+        },
+        userIsLoggedOut() {
+            if (this.isAuth === false) {
+                this.$router.push({ name: "Home" });
+            }
+        },
     },
 };
 </script>
