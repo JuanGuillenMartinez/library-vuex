@@ -1,5 +1,5 @@
 //normalmente las acciones deben ser asíncronas ya que se encargan de realizar las peticiones http
-import { post } from '@/requests/Request'
+import { post, get } from '@/requests/Request'
 
 export const fetchUserCredentials = async ( { commit }, credentials ) => {
     let authSuccess = false
@@ -25,8 +25,9 @@ export const fetchUserCredentials = async ( { commit }, credentials ) => {
 
 export const fetchLogoutUser = async ( { commit } ) => {
     try {
-        // const response = axios.get()
+        await get('/user/logout')
         commit('changeUserAuth', false)
+        localStorage.clear()
     } catch ( error ) {
         alert('Ha occurido un error')
         console.log( error )

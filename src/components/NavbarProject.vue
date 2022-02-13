@@ -57,8 +57,7 @@ export default {
     methods: {
         ...mapActions("AuthStore", ["fetchLogoutUser"]),
         async logout() {
-            const response = await this.fetchLogoutUser()
-            console.log(response)
+            await this.fetchLogoutUser()
             this.userIsLoggedOut()
         },
         userIsLoggedOut() {
