@@ -3,12 +3,12 @@
     <form v-else >
         <div class="mb-3">
             <label class="form-label">Nombre</label>
-            <input :value="customer.name" type="text" class="form-control" />
+            <input :value="currentCustomer.name" type="text" class="form-control" />
         </div>
         <div class="mb-3">
             <label class="form-label">Apellido Paterno</label>
             <input
-                :value="customer.first_name"
+                :value="currentCustomer.first_name"
                 type="text"
                 class="form-control"
             />
@@ -16,18 +16,18 @@
         <div class="mb-3">
             <label class="form-label">Apellido Materno</label>
             <input
-                :value="customer.last_name"
+                :value="currentCustomer.last_name"
                 type="text"
                 class="form-control"
             />
         </div>
         <div class="mb-3">
             <label class="form-label">Correo electrónico</label>
-            <input :value="customer.email" type="email" class="form-control" />
+            <input :value="currentCustomer.email" type="email" class="form-control" />
         </div>
         <div class="mb-3">
             <label class="form-label">Dirección de residencia</label>
-            <input :value="customer.address" type="text" class="form-control" />
+            <input :value="currentCustomer.address" type="text" class="form-control" />
         </div>
         <button @click="update" type="button" class="btn btn-primary">Actualizar</button>
         <button @click="deleteCustomer" type="button" class="btn btn-danger">Eliminar</button>
