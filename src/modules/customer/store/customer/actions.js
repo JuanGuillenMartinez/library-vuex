@@ -4,9 +4,9 @@
 
 // }
 
-import request from '@/api/AxiosInstance'
+import { getAll } from '@/requests/Request'
 
 export const fetchCustomerList = async ( { commit } ) => {
-    const { data: { data } } = await request.get('/customers')
+    const { data: { data } } = await getAll('/customers')
     commit('updateCustomerList', data)
 }
