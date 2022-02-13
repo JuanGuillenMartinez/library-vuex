@@ -27,6 +27,8 @@ export const fetchLogoutUser = async ( { commit } ) => {
     try {
         await get('/user/logout')
         commit('changeUserAuth', false)
+        commit('setCurrentUser', null)
+        commit('setCurrentToken', '')
         localStorage.clear()
     } catch ( error ) {
         alert('Ha occurido un error')
