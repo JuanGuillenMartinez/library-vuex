@@ -3,3 +3,15 @@
 // export const myMutation = ( state ) => {
 //      
 // }
+
+export const changeUserAuth = ( state, isAuth ) => {
+    state.userIsLoggedIn = isAuth
+}
+
+export const setCurrentUser = ( state, user ) => {
+    state.currentUser = user
+}
+
+export const setCurrentToken = ( state, token ) => {
+    state.currentToken = token
+}

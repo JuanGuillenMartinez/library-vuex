@@ -5,6 +5,7 @@
                 >Correo electrónico</label
             >
             <input
+                v-model="email"
                 type="email"
                 class="form-control"
                 id="exampleInputEmail1"
@@ -16,13 +17,14 @@
                 >Contraseña</label
             >
             <input
+                v-model="password"
                 type="password"
                 class="form-control"
                 id="exampleInputPassword1"
             />
         </div>
         <div class="container-login-actions">
-            <button type="submit" class="btn btn-primary">
+            <button @click="loginUser" type="button" class="btn btn-primary">
                 Iniciar sesión
             </button>
             <div class="container-register-text">
@@ -33,7 +35,32 @@
 </template>
 
 <script>
-export default {};
+import { mapActions } from 'vuex';
+export default {
+    data() {
+        return {
+            email: '',
+            password: '',
+            isAuth: false,
+        }
+    },
+    methods: {
+        ...mapActions('AuthStore', ['fetchUserCredentials']),
+        async loginUser () {
+            const credentials = {
+                email: this.email,
+                password: this.password
+            }
+            this.isAuth = await this.fetchUserCredentials(credentials)
+            this.userIsLoggedIn()
+        },
+        userIsLoggedIn() {
+            if(this.isAuth) {
+                this.$router.replace({ name: 'CustomerIndex' })
+            }
+        }
+    }
+};
 </script>
 
 <style scoped>
