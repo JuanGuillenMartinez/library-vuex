@@ -3,12 +3,12 @@
     <form v-else >
         <div class="mb-3">
             <label class="form-label">Nombre</label>
-            <input :value="currentCustomer.name" type="text" class="form-control" />
+            <input :value="customer.name" type="text" class="form-control" />
         </div>
         <div class="mb-3">
             <label class="form-label">Apellido Paterno</label>
             <input
-                :value="currentCustomer.first_name"
+                :value="customer.first_name"
                 type="text"
                 class="form-control"
             />
@@ -16,21 +16,21 @@
         <div class="mb-3">
             <label class="form-label">Apellido Materno</label>
             <input
-                :value="currentCustomer.last_name"
+                :value="customer.last_name"
                 type="text"
                 class="form-control"
             />
         </div>
         <div class="mb-3">
             <label class="form-label">Correo electrónico</label>
-            <input :value="currentCustomer.email" type="email" class="form-control" />
+            <input :value="customer.email" type="email" class="form-control" />
         </div>
         <div class="mb-3">
             <label class="form-label">Dirección de residencia</label>
-            <input :value="currentCustomer.address" type="text" class="form-control" />
+            <input :value="customer.address" type="text" class="form-control" />
         </div>
-        <button type="button" class="btn btn-primary">Actualizar</button>
-        <button type="button" class="btn btn-danger">Eliminar</button>
+        <button @click="update" type="button" class="btn btn-primary">Actualizar</button>
+        <button @click="deleteCustomer" type="button" class="btn btn-danger">Eliminar</button>
     </form>
 </template>
 
@@ -44,10 +44,20 @@ export default {
       ...mapGetters('CustomerStore', [ 'currentCustomer', 'isLoading' ])
     },
     methods: {
-        ...mapActions("CustomerStore", ["fetchCustomerById"]),
+        ...mapActions('CustomerStore', [ 'fetchCustomerById', 'deleteCustomerById', 'updateCustomerById' ]),
         async showCurrentCustomer() {
             await this.fetchCustomerById(this.id)
         },
+        async update() {
+            await this.updateCustomerById(this.id)
+        },
+        async deleteCustomer() {
+          const success = await this.deleteCustomerById(this.id)
+          if(success) {
+            alert('Eliminado correctamente')
+            this.$router.push({ name: 'CustomerIndex' })
+          }
+        }
     },
     watch: {
       id() {
