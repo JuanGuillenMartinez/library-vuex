@@ -7,3 +7,9 @@
 export const updateCustomerList = ( state, data ) => {
     state.customerList = data
 }
+export const setCurrentCustomer = ( state, data ) => {
+    state.currentCustomer = data
+}
+export const setIsLoading = ( state, data ) => {
+    state.isLoading = data
+}

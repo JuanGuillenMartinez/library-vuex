@@ -3,9 +3,7 @@
         <SearchBar />
     </div>
     <div class="container-customers">
-        <div v-for="customer in customers" :key="customer.id" class="card">
-            <div class="card-body">{{ customer.name }}</div>
-        </div>
+        <CustomerListItem @clickEvent="showInformation" v-for="customer in customers" :key="customer.id" :customer=customer />
     </div>
 </template>
 
@@ -16,12 +14,16 @@ import { mapActions, mapGetters } from "vuex";
 export default {
     components: {
         SearchBar: defineAsyncComponent(() => import("@/components/SearchBar")),
+        CustomerListItem: defineAsyncComponent(() => import("@/modules/customer/components/CustomerListItem")),
     },
     computed: {
         ...mapGetters("CustomerStore", ["customers"]),
     },
     methods: {
         ...mapActions("CustomerStore", ["fetchCustomerList"]),
+        showInformation(id) {
+            this.$router.push({ name: 'ShowCustomer', params: { id } })
+        }
     },
     created() {
         this.fetchCustomerList();
