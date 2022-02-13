@@ -20,6 +20,6 @@ display: grid;
 grid-template-columns: 8fr 2fr;
 }
 button {
-    margin-left: 10px;
+    margin-left: 4px;
 }
 </style>
