@@ -2,9 +2,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="@/assets/logo.png" height="50">
+                <img src="@/assets/logo.png" height="50" />
                 Navbar
-                </a>
+            </a>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -30,6 +30,11 @@
                 <form class="d-flex">
                     <SearchBar />
                 </form>
+                <div>
+                    <button type="button" class="btn btn-danger btn-logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -44,4 +49,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.btn-logout {
+    margin-left: 24px;
+}
+</style>
