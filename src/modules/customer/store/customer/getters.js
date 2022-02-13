@@ -5,7 +5,7 @@ export const customers = ( state ) => {
 }
 
 export const currentCustomer = ( state ) => {
-    return state.currentCustomer;
+    return {...state.currentCustomer};
 }
 export const isLoading = ( state ) => {
     return state.isLoading;

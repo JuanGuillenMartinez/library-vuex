@@ -3,7 +3,7 @@
     <form v-else >
         <div class="mb-3">
             <label class="form-label">Nombre</label>
-            <input :value="currentCustomer.name" type="text" class="form-control" />
+            <input v-model="name" type="text" class="form-control" />
         </div>
         <div class="mb-3">
             <label class="form-label">Apellido Paterno</label>
@@ -40,6 +40,11 @@ export default {
     props: {
         id: String,
     },
+    data() {
+      return {
+        name: null
+      }
+    },
     computed: {
       ...mapGetters('CustomerStore', [ 'currentCustomer', 'isLoading' ])
     },
@@ -47,6 +52,8 @@ export default {
         ...mapActions('CustomerStore', [ 'fetchCustomerById', 'deleteCustomerById', 'updateCustomerById' ]),
         async showCurrentCustomer() {
             await this.fetchCustomerById(this.id)
+            const { name } = this.currentCustomer
+            this.name = name
         },
         async update() {
             await this.updateCustomerById(this.id)
@@ -54,7 +61,6 @@ export default {
         async deleteCustomer() {
           const success = await this.deleteCustomerById(this.id)
           if(success) {
-            alert('Eliminado correctamente')
             this.$router.push({ name: 'CustomerIndex' })
           }
         }

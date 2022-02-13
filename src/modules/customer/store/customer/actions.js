@@ -22,16 +22,17 @@ export const fetchCustomerById = async ({ commit }, id) => {
     commit("setIsLoading", false);
 };
 
-export const deleteCustomerById = async ({ commit }, id) => {
+export const deleteCustomerById = async ({ dispatch, commit }, id) => {
     try {
         commit("setIsLoading", true);
         const {
             data: { success },
         } = await deleteRequest("/customers", id);
+        await dispatch("fetchCustomerList");
         commit("setIsLoading", false);
-        return success
+        return success;
     } catch (error) {
-        return error
+        return error;
     }
 };
 
@@ -42,8 +43,8 @@ export const updateCustomerById = async ({ commit }, id) => {
             data: { data },
         } = await update("/customers", id);
         commit("setIsLoading", false);
-        return data
+        return data;
     } catch (error) {
-        return error
+        return error;
     }
 };

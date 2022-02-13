@@ -3,5 +3,5 @@
 export default () => ({
     customerList: [],
     currentCustomer: null,
-    isLoading: true
+    isLoading: true,
 })
