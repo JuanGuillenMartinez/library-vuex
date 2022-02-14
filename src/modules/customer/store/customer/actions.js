@@ -36,12 +36,13 @@ export const deleteCustomerById = async ({ dispatch, commit }, id) => {
     }
 };
 
-export const updateCustomerById = async ({ commit }, id) => {
+export const updateCustomerById = async ({ dispatch, commit }, { id, customer }) => {
     try {
         commit("setIsLoading", true);
         const {
             data: { data },
-        } = await update("/customers", id);
+        } = await update(`/customers/${id}`, customer);
+        await dispatch("fetchCustomerList");
         commit("setIsLoading", false);
         return data;
     } catch (error) {
