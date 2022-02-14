@@ -12,6 +12,7 @@ export const fetchUserCredentials = async ( { commit }, credentials ) => {
             commit('setCurrentToken', token)
             localStorage.setItem('currentToken', token)
             localStorage.setItem('user', user)
+            localStorage.setItem('isAuth', true)
             authSuccess = true
         } else {
             alert( 'Credenciales incorrectas: ', data.error )
@@ -30,6 +31,7 @@ export const fetchLogoutUser = async ( { commit } ) => {
         commit('setCurrentUser', null)
         commit('setCurrentToken', '')
         localStorage.clear()
+        localStorage.setItem('isAuth', false)
     } catch ( error ) {
         alert('Ha occurido un error')
         console.log( error )
