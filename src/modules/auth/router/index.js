@@ -13,13 +13,13 @@ export default {
                     /* webpackChunkName: "login-component" */ "@/modules/auth/components/LoginComponent.vue"
                 ),
         },
-        // {
-        //     path: "/register",
-        //     name: "register",
-        //     component: () =>
-        //         import(
-        //             /* webpackChunkName: "login-component" */ "@/modules/auth/components/RegisterComponent.vue"
-        //         ),
-        // },
+        {
+            path: "register",
+            name: "RegisterRoute",
+            component: () =>
+                import(
+                    /* webpackChunkName: "register-component" */ "@/modules/auth/components/RegisterComponent.vue"
+                ),
+        },
     ]
 };

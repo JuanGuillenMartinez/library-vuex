@@ -1,26 +1,23 @@
 <template>
     <form>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
+            <label class="form-label"
                 >Correo electrónico</label
             >
             <input
                 v-model="email"
                 type="email"
                 class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
             />
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
+            <label  class="form-label"
                 >Contraseña</label
             >
             <input
                 v-model="password"
                 type="password"
                 class="form-control"
-                id="exampleInputPassword1"
             />
         </div>
         <div class="container-login-actions">
@@ -28,7 +25,7 @@
                 Iniciar sesión
             </button>
             <div class="container-register-text">
-                <span>No se encuentra registrado? Registrese.</span>
+                <span @click="goToRegister">No se encuentra registrado? Registrese.</span>
             </div>
         </div>
     </form>
@@ -58,6 +55,9 @@ export default {
             if(this.isAuth) {
                 this.$router.replace({ name: 'CustomerIndex' })
             }
+        },
+        goToRegister() {
+            this.$router.push({ name: 'RegisterRoute' })
         }
     }
 };
