@@ -29,11 +29,18 @@
             Eliminar
         </button>
     </form>
+    <FloatButton @buttonClicked="addCustomer" />
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { defineAsyncComponent } from "vue";
 export default {
+    components: {
+        FloatButton: defineAsyncComponent(() =>
+            import("@/components/FloatButton")
+        ),
+    },
     props: {
         id: String,
     },
@@ -57,8 +64,7 @@ export default {
         ]),
         async showCurrentCustomer() {
             await this.fetchCustomerById(this.id);
-            const { name, first_name, last_name, address, email } =
-                this.currentCustomer;
+            const { name, first_name, last_name, address, email } = this.currentCustomer;
             this.name = name;
             this.first_name = first_name;
             this.last_name = last_name;
@@ -81,6 +87,9 @@ export default {
             if (success) {
                 this.$router.push({ name: "CustomerIndex" });
             }
+        },
+        addCustomer() {
+            console.log("hola");
         },
     },
     watch: {
