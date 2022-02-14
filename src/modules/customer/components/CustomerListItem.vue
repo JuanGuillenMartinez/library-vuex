@@ -30,9 +30,8 @@ export default {
 </script>
 
 <style scoped>
-
 .card {
     cursor: pointer;
+    margin-bottom: 6px;
 }
-
 </style>
