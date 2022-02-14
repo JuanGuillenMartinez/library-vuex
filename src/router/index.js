@@ -3,10 +3,12 @@ import Home from "../views/Home.vue";
 import CustomerRouter from "@/modules/customer/router";
 import AuthRouter from "@/modules/auth/router";
 import NotFound from "@/components/NotFound";
-
+import store from "@/modules/auth/store/auth"
 
 const routes = [
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+    { 
+        path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound 
+    },
     {
         path: "/",
         name: "Home",
@@ -36,4 +38,16 @@ const router = createRouter({
     routes, 
 });
 
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requireAuth) &&  !isLogin()) {
+        next("/auth")
+    } else {
+        next()
+    }
+})
+
 export default router;
+
+function isLogin() {
+    return store.getters.isAuth(store.state())
+}

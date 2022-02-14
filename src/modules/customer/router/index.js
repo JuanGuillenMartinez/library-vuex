@@ -1,9 +1,12 @@
-export default {
+    export default {
     name: "CustomerIndex",
     component: () =>
         import(
             /* webpackChunkName: "customer-index" */ "@/modules/customer/views/CustomerIndex.vue"
         ),
+    meta: {
+        requireAuth: true
+    },
     children: [
         {
             path: ":id",
