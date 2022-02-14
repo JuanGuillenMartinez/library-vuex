@@ -19,7 +19,7 @@ export default {};
     margin: 24px 30% 12px;
 }
 .auth-title {
-    margin-top: 5%;
+    margin-top: 3%;
     text-align: center;
 }
 </style>
