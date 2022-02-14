@@ -37,3 +37,14 @@ export const fetchLogoutUser = async ( { commit } ) => {
         console.log( error )
     }
 }
+
+export const registerUser = async ( { commit }, data ) => {
+    try {
+        const { data: { success } } = await post('/user/register', data)
+        console.log(success)
+        return success
+    } catch ( error ) {
+        alert('Ha occurido un error')
+        console.log( error )
+    }
+}
