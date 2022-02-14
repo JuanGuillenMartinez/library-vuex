@@ -1,7 +1,6 @@
 <template>
-    <div v-if="isLoading">Cargando...</div>
-
-    <form v-else>
+    <Loading v-model:active="isLoading" />
+    <form>
         <div class="mb-3">
             <label class="form-label">Nombre</label>
             <input v-model="name" type="text" class="form-control" />
@@ -33,7 +32,12 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 export default {
+    components: {
+        Loading,
+    },
     props: {
         id: String,
     },

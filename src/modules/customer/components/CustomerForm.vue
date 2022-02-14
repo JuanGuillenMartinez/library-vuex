@@ -1,4 +1,5 @@
 <template>
+    <Loading v-model:active="isLoading" />
     <form>
         <div class="mb-3">
             <label class="form-label">Nombre</label>
@@ -25,23 +26,30 @@
 </template>
 
 <script>
-import FloatButton from '@/components/FloatButton'
-import { mapActions } from 'vuex';
+import FloatButton from "@/components/FloatButton";
+import { mapActions, mapGetters } from "vuex";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
+
 export default {
     components: {
+        Loading,
         FloatButton,
     },
     data() {
         return {
-            name: '',
-            first_name: '',
-            last_name: '',
-            email: '',
-            address: '',
-        }
+            name: "",
+            first_name: "",
+            last_name: "",
+            email: "",
+            address: "",
+        };
+    },
+    computed: {
+        ...mapGetters("CustomerStore", ["isLoading"]),
     },
     methods: {
-        ...mapActions('CustomerStore', [ 'saveCustomer' ]),
+        ...mapActions("CustomerStore", ["saveCustomer"]),
         async sendCustomer() {
             const customer = {
                 name: this.name,
@@ -49,18 +57,18 @@ export default {
                 last_name: this.last_name,
                 email: this.email,
                 address: this.address,
-            }
-            await this.saveCustomer(customer)
-            this.clearInputs()
+            };
+            await this.saveCustomer(customer);
+            this.clearInputs();
         },
         clearInputs() {
-            this.name = ''
-            this.first_name = ''
-            this.last_name = ''
-            this.email = ''
-            this.address = ''
-        }
-    }
+            this.name = "";
+            this.first_name = "";
+            this.last_name = "";
+            this.email = "";
+            this.address = "";
+        },
+    },
 };
 </script>
 
