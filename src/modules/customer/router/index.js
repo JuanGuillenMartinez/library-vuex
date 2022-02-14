@@ -14,5 +14,14 @@ export default {
                 ),
             props: true,
         },
+        {
+            path: "add",
+            name: "CustomerFormRoute",
+            component: () =>
+                import(
+                    /* webpackChunkName: "login-component" */ "@/modules/customer/components/CustomerForm.vue"
+                ),
+            props: true,
+        },
     ]
 };

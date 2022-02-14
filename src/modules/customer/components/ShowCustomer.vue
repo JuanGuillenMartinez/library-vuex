@@ -29,7 +29,7 @@
             Eliminar
         </button>
     </form>
-    <FloatButton @buttonClicked="addCustomer" />
+    <FloatButton icon="fa-solid fa-plus" @buttonClicked="addCustomer" />
 </template>
 
 <script>
@@ -64,7 +64,8 @@ export default {
         ]),
         async showCurrentCustomer() {
             await this.fetchCustomerById(this.id);
-            const { name, first_name, last_name, address, email } = this.currentCustomer;
+            const { name, first_name, last_name, address, email } =
+                this.currentCustomer;
             this.name = name;
             this.first_name = first_name;
             this.last_name = last_name;
@@ -89,7 +90,7 @@ export default {
             }
         },
         addCustomer() {
-            console.log("hola");
+            this.$router.push({ name: "CustomerFormRoute" });
         },
     },
     watch: {

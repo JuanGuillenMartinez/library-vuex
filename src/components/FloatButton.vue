@@ -1,11 +1,14 @@
 <template>
     <button @click="$emit('buttonClicked')" type="button" class="btn btn-success">
-        <i class="fa-solid fa-plus"></i>
+        <i :class="icon"></i>
     </button>
 </template>
 
 <script>
 export default {
+    props: {
+        icon: String
+    },
     emits: [ 'buttonClicked' ]
 };
 </script>
@@ -18,5 +21,6 @@ button {
     border-radius: 50%;
     width: 65px;
     height: 65px;
+    font-size: 24px;
 }
 </style>
