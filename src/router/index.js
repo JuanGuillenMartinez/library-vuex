@@ -39,7 +39,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requireAuth) &&  !isLogin()) {
+    if (to.matched.some(record => record.meta.requireAuth) &&  !isLogged()) {
         next("/auth")
     } else {
         next()
@@ -48,6 +48,6 @@ router.beforeEach((to, from, next) => {
 
 export default router;
 
-function isLogin() {
+function isLogged() {
     return store.getters.isAuth(store.state())
 }
