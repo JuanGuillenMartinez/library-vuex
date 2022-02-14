@@ -1,5 +1,6 @@
 <template>
 <div v-if="isLoading">Cargando...</div>
+    
     <form v-else >
         <div class="mb-3">
             <label class="form-label">Nombre</label>
@@ -8,7 +9,7 @@
         <div class="mb-3">
             <label class="form-label">Apellido Paterno</label>
             <input
-                :value="currentCustomer.first_name"
+                :value="first_name"
                 type="text"
                 class="form-control"
             />
@@ -16,18 +17,18 @@
         <div class="mb-3">
             <label class="form-label">Apellido Materno</label>
             <input
-                :value="currentCustomer.last_name"
+                :value="last_name"
                 type="text"
                 class="form-control"
             />
         </div>
         <div class="mb-3">
             <label class="form-label">Correo electrónico</label>
-            <input :value="currentCustomer.email" type="email" class="form-control" />
+            <input :value="email" type="email" class="form-control" />
         </div>
         <div class="mb-3">
             <label class="form-label">Dirección de residencia</label>
-            <input :value="currentCustomer.address" type="text" class="form-control" />
+            <input :value="address" type="text" class="form-control" />
         </div>
         <button @click="update" type="button" class="btn btn-primary">Actualizar</button>
         <button @click="deleteCustomer" type="button" class="btn btn-danger">Eliminar</button>
@@ -42,7 +43,11 @@ export default {
     },
     data() {
       return {
-        name: null
+        name: '',
+        first_name: '',
+        last_name: '',
+        address: '',
+        email: '',
       }
     },
     computed: {
@@ -52,8 +57,12 @@ export default {
         ...mapActions('CustomerStore', [ 'fetchCustomerById', 'deleteCustomerById', 'updateCustomerById' ]),
         async showCurrentCustomer() {
             await this.fetchCustomerById(this.id)
-            const { name } = this.currentCustomer
+            const { name, first_name, last_name, address, email } = this.currentCustomer
             this.name = name
+            this.first_name = first_name
+            this.last_name = last_name
+            this.address = address
+            this.email = email
         },
         async update() {
             await this.updateCustomerById(this.id)
