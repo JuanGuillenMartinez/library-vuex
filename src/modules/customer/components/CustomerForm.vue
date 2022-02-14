@@ -50,7 +50,15 @@ export default {
                 email: this.email,
                 address: this.address,
             }
-            const response = await this.saveCustomer(customer)
+            await this.saveCustomer(customer)
+            this.clearInputs()
+        },
+        clearInputs() {
+            this.name = ''
+            this.first_name = ''
+            this.last_name = ''
+            this.email = ''
+            this.address = ''
         }
     }
 };
