@@ -1,7 +1,7 @@
 <template>
     <div class="container-customers">
         <div class="container-list">
-            <customer-list />
+            <CustomerList />
             <FloatButton icon="fa-solid fa-plus" @buttonClicked="addCustomer" />
         </div>
         <div class="container-router-view">
