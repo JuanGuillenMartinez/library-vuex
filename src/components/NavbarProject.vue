@@ -27,14 +27,21 @@
                         <a class="nav-link" href="/customer">Clientes</a>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <!-- <form class="d-flex">
                     <SearchBar />
-                </form>
+                </form> -->
                 <div>
-                    <button
+                    <button v-if="isAuth"
                         @click="logout"
                         type="button"
                         class="btn btn-danger btn-logout"
+                    >
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </button>
+                    <button v-else
+                        @click="login"
+                        type="button"
+                        class="btn btn-success btn-logout"
                     >
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
@@ -65,6 +72,9 @@ export default {
                 this.$router.push({ name: "Home" });
             }
         },
+        login() {
+            this.$router.push({ name: "login"})
+        }
     },
 };
 </script>
