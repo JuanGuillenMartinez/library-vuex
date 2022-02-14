@@ -4,7 +4,7 @@
 
 // }
 
-import { getAll, get, deleteRequest, update } from "@/requests/Request";
+import { getAll, get, deleteRequest, update, post } from "@/requests/Request";
 
 export const fetchCustomerList = async ({ commit }) => {
     const {
@@ -36,12 +36,29 @@ export const deleteCustomerById = async ({ dispatch, commit }, id) => {
     }
 };
 
-export const updateCustomerById = async ({ dispatch, commit }, { id, customer }) => {
+export const updateCustomerById = async (
+    { dispatch, commit },
+    { id, customer }
+) => {
     try {
         commit("setIsLoading", true);
         const {
             data: { data },
         } = await update(`/customers/${id}`, customer);
+        await dispatch("fetchCustomerList");
+        commit("setIsLoading", false);
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
+
+export const saveCustomer = async ({ dispatch, commit }, customer) => {
+    try {
+        commit("setIsLoading", true);
+        const {
+            data: { data },
+        } = await post("/customers", customer);
         await dispatch("fetchCustomerList");
         commit("setIsLoading", false);
         return data;

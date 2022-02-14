@@ -20,18 +20,40 @@
             <label class="form-label">Dirección de residencia</label>
             <input v-model="address" type="text" class="form-control" />
         </div>
-        <button @click="update" type="button" class="btn btn-primary">
-            Actualizar
-        </button>
-        <button @click="deleteCustomer" type="button" class="btn btn-danger">
-            Eliminar
-        </button>
     </form>
-    <FloatButton icon="fa-solid fa-check" @buttonClicked="saveCustomer" />
+    <FloatButton icon="fa-solid fa-check" @buttonClicked="sendCustomer" />
 </template>
 
 <script>
-export default {};
+import FloatButton from '@/components/FloatButton'
+import { mapActions } from 'vuex';
+export default {
+    components: {
+        FloatButton,
+    },
+    data() {
+        return {
+            name: '',
+            first_name: '',
+            last_name: '',
+            email: '',
+            address: '',
+        }
+    },
+    methods: {
+        ...mapActions('CustomerStore', [ 'saveCustomer' ]),
+        async sendCustomer() {
+            const customer = {
+                name: this.name,
+                first_name: this.first_name,
+                last_name: this.last_name,
+                email: this.email,
+                address: this.address,
+            }
+            const response = await this.saveCustomer(customer)
+        }
+    }
+};
 </script>
 
 <style scoped>
