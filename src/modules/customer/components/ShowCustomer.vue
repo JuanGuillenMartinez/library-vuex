@@ -99,4 +99,7 @@ form {
     margin-left: 24px;
     margin-right: 24px;
 }
+.btn-danger {
+    margin-left: 6px;
+}
 </style>
