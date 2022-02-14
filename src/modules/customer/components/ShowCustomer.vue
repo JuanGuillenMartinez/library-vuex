@@ -29,18 +29,11 @@
             Eliminar
         </button>
     </form>
-    <FloatButton icon="fa-solid fa-plus" @buttonClicked="addCustomer" />
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import { defineAsyncComponent } from "vue";
 export default {
-    components: {
-        FloatButton: defineAsyncComponent(() =>
-            import("@/components/FloatButton")
-        ),
-    },
     props: {
         id: String,
     },
@@ -88,9 +81,6 @@ export default {
             if (success) {
                 this.$router.push({ name: "CustomerIndex" });
             }
-        },
-        addCustomer() {
-            this.$router.push({ name: "CustomerFormRoute" });
         },
     },
     watch: {

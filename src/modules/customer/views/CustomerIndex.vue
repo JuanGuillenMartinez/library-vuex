@@ -2,6 +2,7 @@
     <div class="container-customers">
         <div class="container-list">
             <customer-list />
+            <FloatButton icon="fa-solid fa-plus" @buttonClicked="addCustomer" />
         </div>
         <div class="container-router-view">
             <router-view />
@@ -16,6 +17,14 @@ export default {
         CustomerList: defineAsyncComponent(() =>
             import("@/modules/customer/components/CustomerList.vue")
         ),
+        FloatButton: defineAsyncComponent(() =>
+            import("@/components/FloatButton")
+        ),
+    },
+    methods: {
+        addCustomer() {
+            this.$router.push({ name: "CustomerFormRoute" });
+        },
     },
 };
 </script>
