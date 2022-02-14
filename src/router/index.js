@@ -2,8 +2,11 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import CustomerRouter from "@/modules/customer/router";
 import AuthRouter from "@/modules/auth/router";
+import NotFound from "@/components/NotFound";
+
 
 const routes = [
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
     {
         path: "/",
         name: "Home",
@@ -30,7 +33,7 @@ const routes = [
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
-    routes,
+    routes, 
 });
 
 export default router;
