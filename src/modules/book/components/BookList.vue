@@ -27,6 +27,7 @@ export default {
         ...mapActions('BookStore', [ 'fetchBookList' ])
     },
     created() {
+        console.log(this.fetchBookList());
         this.fetchBookList()
     }
 }
