@@ -1,5 +1,5 @@
 <template>
-  <h1>Aqui va la lista de libros</h1>
+    <h1>Aquí va la lista de libros</h1>
 </template>
 
 <script>
