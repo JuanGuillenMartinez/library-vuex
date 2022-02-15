@@ -1,9 +1,12 @@
 <template>
     <div class="container-searchbar">
-        <SearchBar />
+        <SearchBar v-model="inputSearch"/>
     </div>
-    <div class="container-customers">
+    <div v-if="!isSearching" class="container-customers">
         <CustomerListItem @clickEvent="showInformation" v-for="customer in customers" :key="customer.id" :customer=customer />
+    </div>
+    <div v-else class="container-customers">
+        <CustomerListItem @clickEvent="showInformation" v-for="item in listFiltered" :key="item.id" :customer=item />
     </div>
 </template>
 
@@ -16,8 +19,15 @@ export default {
         SearchBar: defineAsyncComponent(() => import("@/components/SearchBar")),
         CustomerListItem: defineAsyncComponent(() => import("@/modules/customer/components/CustomerListItem")),
     },
+    data() {
+        return {
+            inputSearch: '',
+            isSearching: false,
+            listFiltered: []
+        }
+    },
     computed: {
-        ...mapGetters("CustomerStore", ["customers"]),
+        ...mapGetters("CustomerStore", ["customers", "searchCustomerByName"]),
     },
     methods: {
         ...mapActions("CustomerStore", ["fetchCustomerList"]),
@@ -28,6 +38,16 @@ export default {
     created() {
         this.fetchCustomerList();
     },
+    watch: {
+        inputSearch(newValue) {
+            if(newValue) {
+                this.isSearching = true
+                this.listFiltered = this.searchCustomerByName(newValue)
+            } else {
+                this.isSearching = false
+            }
+        }
+    }
 };
 </script>
 
