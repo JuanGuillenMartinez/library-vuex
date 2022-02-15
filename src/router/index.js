@@ -3,7 +3,8 @@ import Home from "../views/Home.vue";
 import CustomerRouter from "@/modules/customer/router";
 import AuthRouter from "@/modules/auth/router";
 import NotFound from "@/components/NotFound";
-import store from "@/modules/auth/store/auth"
+import store from "@/modules/auth/store/auth";
+import BookRouter from "@/modules/book/router"
 
 const routes = [
     { 
@@ -24,12 +25,16 @@ const routes = [
             import(/* webpackChunkName: "about" */ "../views/About.vue"),
     },
     {
+        path: "/auth",
+        ...AuthRouter,
+    },
+    {
         path: "/customer",
         ...CustomerRouter,
     },
     {
-        path: "/auth",
-        ...AuthRouter,
+        path: "/book",
+        ...BookRouter,
     },
 ];
 
