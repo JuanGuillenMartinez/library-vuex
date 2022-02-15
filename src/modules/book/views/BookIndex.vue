@@ -1,8 +1,7 @@
 <template>
     <div class="container-customers">
-        <h1>aqui van los books</h1>
         <div class="container-list">
-            <CustomerList />
+            <BookList />
             <FloatButton icon="fa-solid fa-plus" @buttonClicked="addCustomer" />
         </div>
         <div class="container-router-view">
@@ -15,8 +14,8 @@
 import { defineAsyncComponent } from "vue";
 export default {
     components: {
-        CustomerList: defineAsyncComponent(() =>
-            import("@/modules/customer/components/CustomerList.vue")
+        BookList: defineAsyncComponent(() =>
+            import("@/modules/book/components/BookList.vue")
         ),
         FloatButton: defineAsyncComponent(() =>
             import("@/components/FloatButton")

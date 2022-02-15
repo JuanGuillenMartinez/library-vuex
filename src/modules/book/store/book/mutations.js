@@ -4,11 +4,11 @@
 //      
 // }
 
-export const updateCustomerList = ( state, data ) => {
-    state.customerList = data
+export const updateBookList = ( state, data ) => {
+    state.bookList = data
 }
-export const setCurrentCustomer = ( state, data ) => {
-    state.currentCustomer = data
+export const setCurrentBook = ( state, data ) => {
+    state.currentBook = data
 }
 export const setIsLoading = ( state, data ) => {
     state.isLoading = data

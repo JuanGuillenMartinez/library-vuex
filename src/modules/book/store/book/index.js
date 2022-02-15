@@ -5,7 +5,7 @@ import * as getters from "./getters";
 import * as actions from "./actions";
 import * as mutations from "./mutations";
 
-const CustomerModuleStore = {
+const BookModuleStore = {
     namespaced: true,
     actions,
     getters,
@@ -13,4 +13,4 @@ const CustomerModuleStore = {
     state,
 };
 
-export default CustomerModuleStore;
+export default BookModuleStore;

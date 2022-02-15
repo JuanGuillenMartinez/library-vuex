@@ -6,29 +6,29 @@
 
 import { getAll, get, deleteRequest, update, post } from "@/requests/Request";
 
-export const fetchCustomerList = async ({ commit }) => {
+export const fetchBookList = async ({ commit }) => {
     const {
         data: { data },
-    } = await getAll("/customers");
-    commit("updateCustomerList", data);
+    } = await getAll("/books");
+    commit("updateBookList", data);
 };
 
-export const fetchCustomerById = async ({ commit }, id) => {
+export const fetchBookById = async ({ commit }, id) => {
     commit("setIsLoading", true);
     const {
         data: { data },
-    } = await get(`/customers/${id}`);
-    commit("setCurrentCustomer", data);
+    } = await get(`/books/${id}`);
+    commit("setCurrentBook", data);
     commit("setIsLoading", false);
 };
 
-export const deleteCustomerById = async ({ dispatch, commit }, id) => {
+export const deleteBookById = async ({ dispatch, commit }, id) => {
     try {
         commit("setIsLoading", true);
         const {
             data: { success },
-        } = await deleteRequest("/customers", id);
-        await dispatch("fetchCustomerList");
+        } = await deleteRequest("/books", id);
+        await dispatch("fetchBookList");
         commit("setIsLoading", false);
         return success;
     } catch (error) {
@@ -36,16 +36,16 @@ export const deleteCustomerById = async ({ dispatch, commit }, id) => {
     }
 };
 
-export const updateCustomerById = async (
+export const updateBookById = async (
     { dispatch, commit },
-    { id, customer }
+    { id, book }
 ) => {
     try {
         commit("setIsLoading", true);
         const {
             data: { data },
-        } = await update(`/customers/${id}`, customer);
-        await dispatch("fetchCustomerList");
+        } = await update(`/books/${id}`, book);
+        await dispatch("fetchBookList");
         commit("setIsLoading", false);
         return data;
     } catch (error) {
@@ -53,13 +53,13 @@ export const updateCustomerById = async (
     }
 };
 
-export const saveCustomer = async ({ dispatch, commit }, customer) => {
+export const saveBook = async ({ dispatch, commit }, book) => {
     try {
         commit("setIsLoading", true);
         const {
             data: { data },
-        } = await post("/customers", customer);
-        await dispatch("fetchCustomerList");
+        } = await post("/books", book);
+        await dispatch("fetchBookList");
         commit("setIsLoading", false);
         return data;
     } catch (error) {

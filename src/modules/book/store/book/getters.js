@@ -1,11 +1,11 @@
 //los getters nos ofrecen acceso a las propiedades de los state
 
-export const customers = ( state ) => {
-    return state.customerList;
+export const books = ( state ) => {
+    return state.bookList;
 }
 
-export const currentCustomer = ( state ) => {
-    return {...state.currentCustomer};
+export const currentBook = ( state ) => {
+    return {...state.currentBook};
 }
 export const isLoading = ( state ) => {
     return state.isLoading;
