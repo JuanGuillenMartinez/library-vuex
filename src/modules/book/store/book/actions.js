@@ -7,19 +7,29 @@
 import { getAll, get, deleteRequest, update, post } from "@/requests/Request";
 
 export const fetchBookList = async ({ commit }) => {
-    const {
-        data: { data },
-    } = await getAll("/books");
-    commit("updateBookList", data);
+    try {
+        const {
+            data: { data, success },
+        } = await getAll("/books");
+        commit("updateBookList", data);
+        return success;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export const fetchBookById = async ({ commit }, id) => {
-    commit("setIsLoading", true);
-    const {
-        data: { data },
-    } = await get(`/books/${id}`);
-    commit("setCurrentBook", data);
-    commit("setIsLoading", false);
+    try {
+        commit("setIsLoading", true);
+        const {
+            data: { data, success },
+        } = await get(`/books/${id}`);
+        commit("setCurrentBook", data);
+        commit("setIsLoading", false);
+        return success;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export const deleteBookById = async ({ dispatch, commit }, id) => {
@@ -36,10 +46,7 @@ export const deleteBookById = async ({ dispatch, commit }, id) => {
     }
 };
 
-export const updateBookById = async (
-    { dispatch, commit },
-    { id, book }
-) => {
+export const updateBookById = async ({ dispatch, commit }, { id, book }) => {
     try {
         commit("setIsLoading", true);
         const {
